@@ -158,14 +158,15 @@ namespace Video_rental_system
             }
 
         }
-                public string MovieInsert(string label_movie_name, string Rating_Rating, string Title_Title, string label_rental_cost, string label_year, string label_copies, string label_plot, string label_genre)
+                public string MovieInsert(string Rating_Rating, string Title_Title, string label_rental_cost, string label_year, string label_copies, string label_plot, string label_genre)
                 {
                     try
                     {
                         cmd.Parameters.Clear();
                         cmd.Connection = Obj_Conn;
-                        QueryString = "Insert into Movie(MovieID,Rating,Title, Year,Rental_Cost, Copies, Plot, Genre) Values(@MovieName,@Rating,@Title,@year,@Copies, @Plot,@Genre)";
-                        cmd.Parameters.AddWithValue("@MovieName", label_movie_name);
+                       
+                       QueryString = "Insert into Movie(MovieID,Rating,Title, Year,Rental_Cost, Copies, Plot, Genre) Values(@Rating,@Title,@year,@Copies, @Plot,@Genre)";
+                       
                         cmd.Parameters.AddWithValue("@Rating", Rating_Rating);
                         cmd.Parameters.AddWithValue("@Title",Title_Title);
                         cmd.Parameters.AddWithValue("@Rental_cost" , label_rental_cost);

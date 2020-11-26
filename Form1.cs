@@ -136,11 +136,11 @@ namespace Video_rental_system
         {
             
 
-                if (text_movie.Text != "" && text_rating.Text != "" && text_title.Text != "" && text_year.Text != "" && text_rental_cost.Text != "" && text_copies.Text != "" && text_plot.Text != "" && text_genre.Text != "")
+                if (text_rating.Text != "" && text_title.Text != "" && text_year.Text != "" && text_rental_cost.Text != "" && text_copies.Text != "" && text_plot.Text != "" && text_genre.Text != "")
                 {
-                 string message = Obj_Data.MovieInsert(text_movie.Text, text_rating.Text, text_title.Text, text_year.Text, text_rental_cost.Text, text_copies.Text, text_plot.Text, text_genre.Text);
+                 string message = Obj_Data.MovieInsert( text_rating.Text, text_title.Text, text_year.Text, text_rental_cost.Text, text_copies.Text, text_plot.Text, text_genre.Text);
                   MessageBox.Show(message);
-                text_movie.Text = "";
+
                 text_rating.Text = "";
                 text_title.Text = ""; 
                 text_year.Text = "";
