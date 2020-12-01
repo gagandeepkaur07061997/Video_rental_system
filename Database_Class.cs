@@ -99,9 +99,14 @@ namespace Video_rental_system
             {
                 cmd.Parameters.Clear();
                 cmd.Connection = Obj_Conn;
-                QueryString = "Delete from Customer where CustID =@CustID";
+
+                cmd.CommandText = "Customer_Delete";
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                //QueryString = "Delete from Customer where CustID =@CustID";
+
                 cmd.Parameters.AddWithValue("@CustID", CustomerID);
-                cmd.CommandText = QueryString;
+                //cmd.CommandText = QueryString;
                 //connection opened
                 Obj_Conn.Open();
                 // Executed query
@@ -158,45 +163,74 @@ namespace Video_rental_system
             }
 
         }
-                public string MovieInsert(string Rating_Rating, string Title_Title, string label_rental_cost, string label_year, string label_copies, string label_plot, string label_genre)
+        public string MovieInsert(string Rating_Rating, string Title_Title, string label_rental_cost, string label_year, string label_copies, string label_plot, string label_genre)
+        {
+            try
+            {
+                cmd.Parameters.Clear();
+                cmd.Connection = Obj_Conn;
+
+                QueryString = "Insert into Movies(Rating,Title,Rental_Cost,Year,Copies, Plot, Genre) Values(@Rating,@Title,@Rental_cost,@year,@Copies, @Plot,@Genre)";
+
+                cmd.Parameters.AddWithValue("@Rating", Rating_Rating);
+                cmd.Parameters.AddWithValue("@Title", Title_Title);
+                cmd.Parameters.AddWithValue("@Rental_cost", label_rental_cost);
+                cmd.Parameters.AddWithValue("@Year", label_year);
+                cmd.Parameters.AddWithValue("@Copies", label_copies);
+                cmd.Parameters.AddWithValue("@Plot", label_plot);
+                cmd.Parameters.AddWithValue("@Genre", label_genre);
+                cmd.CommandText = QueryString;
+                //connection opened
+                Obj_Conn.Open();
+                // Executed query
+                cmd.ExecuteNonQuery();
+                return "Movie Data is added Successfully";
+            }
+            catch (Exception ex)
+            { 
+                // show error Message
+                return ex.Message;
+            }
+            finally
+            {
+                // close connection
+                if (Obj_Conn != null)
                 {
-                    try
-                    {
-                        cmd.Parameters.Clear();
-                        cmd.Connection = Obj_Conn;
-                       
-                       QueryString = "Insert into Movie(MovieID,Rating,Title, Year,Rental_Cost, Copies, Plot, Genre) Values(@Rating,@Title,@year,@Copies, @Plot,@Genre)";
-                       
-                        cmd.Parameters.AddWithValue("@Rating", Rating_Rating);
-                        cmd.Parameters.AddWithValue("@Title",Title_Title);
-                        cmd.Parameters.AddWithValue("@Rental_cost" , label_rental_cost);
-                        cmd.Parameters.AddWithValue("@Year", label_year);
-                        cmd.Parameters.AddWithValue("@Copies", label_copies);
-                        cmd.Parameters.AddWithValue("@Plot", label_plot);
-                        cmd.Parameters.AddWithValue("@Genre", label_genre);
-                        cmd.CommandText = QueryString;
-                        //connection opened
-                        Obj_Conn.Open();
-                        // Executed query
-                        cmd.ExecuteNonQuery();
-                        return "Movie Data is added Successfully";
-                    }
-                    catch (Exception ex)
-                    {
-                        // show error Message
-                        return ex.Message;
-                    }
-                    finally
-                    {
-                        // close connection
-                        if (Obj_Conn != null)
-                        {
-                            Obj_Conn.Close();
-                        }
-                           }
-                         }
-                          }
-                         }
+                    Obj_Conn.Close();
+                }
+            }
+        }
+        public string MovieDelete()
+        {
+            try
+            {
+                cmd.Parameters.Clear();
+                cmd.Connection = Obj_Conn;
+                QueryString = "Delete from Movie where MovieID =@MoviesID";
+                cmd.Parameters.AddWithValue("@MovieID", "MovieID");
+                cmd.CommandText = QueryString;
+                //connection opened
+                Obj_Conn.Open();
+                // Executed query
+                cmd.ExecuteNonQuery();
+                return "Movie Data Deleted Successfully";
+            }
+            catch (Exception ex)
+            {
+                // show error Message
+                return ex.Message;
+            }
+            finally
+            {
+                // close connection
+                if (Obj_Conn != null)
+                {
+                    Obj_Conn.Close();
+                }
+            }
+        }
+    }
+}
 
 
 

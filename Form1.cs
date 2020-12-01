@@ -155,8 +155,25 @@ namespace Video_rental_system
                     MessageBox.Show("All the fileds are required");
                 }
             }
+
+        private void btn_delete_movie_Click(object sender, EventArgs e)
+        {
+            
+                string message = Obj_Data.CustomerDelete();
+                MessageBox.Show(message);
+                text_rating.Text = "";
+                text_title.Text = "";
+                text_year.Text = "";
+                text_rental_cost.Text = "";
+                text_copies.Text = "";
+                text_plot.Text = "";
+                text_genre.Text = "";
+               Movies_Load();
+            }
+        }
     }
-    }
+
+    
     
 
     

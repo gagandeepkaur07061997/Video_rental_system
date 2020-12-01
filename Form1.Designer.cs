@@ -397,7 +397,7 @@ namespace Video_rental_system
             // 
             this.label_rental_details.AutoSize = true;
             this.label_rental_details.BackColor = System.Drawing.Color.Yellow;
-            this.label_rental_details.Location = new System.Drawing.Point(133, 10);
+            this.label_rental_details.Location = new System.Drawing.Point(132, 10);
             this.label_rental_details.Name = "label_rental_details";
             this.label_rental_details.Size = new System.Drawing.Size(73, 13);
             this.label_rental_details.TabIndex = 3;
@@ -438,7 +438,7 @@ namespace Video_rental_system
             this.label_movie_details.AutoSize = true;
             this.label_movie_details.BackColor = System.Drawing.Color.Yellow;
             this.label_movie_details.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.label_movie_details.Location = new System.Drawing.Point(63, 13);
+            this.label_movie_details.Location = new System.Drawing.Point(63, 19);
             this.label_movie_details.Name = "label_movie_details";
             this.label_movie_details.Size = new System.Drawing.Size(73, 15);
             this.label_movie_details.TabIndex = 0;
@@ -575,6 +575,7 @@ namespace Video_rental_system
             this.btn_delete_movie.TabIndex = 16;
             this.btn_delete_movie.Text = "Delete";
             this.btn_delete_movie.UseVisualStyleBackColor = false;
+            this.btn_delete_movie.Click += new System.EventHandler(this.btn_delete_movie_Click);
             // 
             // btn_update_movie
             // 
