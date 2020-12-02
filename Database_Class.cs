@@ -15,7 +15,7 @@ namespace Video_rental_system
         private readonly SqlDataReader Data_Reader;
         private SqlDataAdapter da = new SqlDataAdapter();
         string QueryString;
-        public int CustomerID;
+        public int CustomerID, MovieID, Rental_ID;
         public Database_Class()
         {
             string ConnString = @"Data Source=DESKTOP-19R6C8C\SQLEXPRESS;Initial Catalog=Videorental_system;Integrated Security=True";
@@ -163,7 +163,7 @@ namespace Video_rental_system
             }
 
         }
-        public string MovieInsert(string Rating_Rating, string Title_Title, string label_rental_cost, string label_year, string label_copies, string label_plot, string label_genre)
+        public string Movieinsert(string Rating, string Title, string year, string rental_cost, string copies, string plot, string genre)
         {
             try
             {
@@ -172,13 +172,14 @@ namespace Video_rental_system
 
                 QueryString = "Insert into Movies(Rating,Title,Rental_Cost,Year,Copies, Plot, Genre) Values(@Rating,@Title,@Rental_cost,@year,@Copies, @Plot,@Genre)";
 
-                cmd.Parameters.AddWithValue("@Rating", Rating_Rating);
-                cmd.Parameters.AddWithValue("@Title", Title_Title);
-                cmd.Parameters.AddWithValue("@Rental_cost", label_rental_cost);
-                cmd.Parameters.AddWithValue("@Year", label_year);
-                cmd.Parameters.AddWithValue("@Copies", label_copies);
-                cmd.Parameters.AddWithValue("@Plot", label_plot);
-                cmd.Parameters.AddWithValue("@Genre", label_genre);
+                cmd.Parameters.AddWithValue("@Rating", Rating);
+                cmd.Parameters.AddWithValue("@Title", Title);
+                cmd.Parameters.AddWithValue("@Year", year);
+                cmd.Parameters.AddWithValue("@Rental_cost", rental_cost);
+
+                cmd.Parameters.AddWithValue("@Copies", copies);
+                cmd.Parameters.AddWithValue("@Plot", plot);
+                cmd.Parameters.AddWithValue("@Genre", genre);
                 cmd.CommandText = QueryString;
                 //connection opened
                 Obj_Conn.Open();
@@ -187,7 +188,7 @@ namespace Video_rental_system
                 return "Movie Data is added Successfully";
             }
             catch (Exception ex)
-            { 
+            {
                 // show error Message
                 return ex.Message;
             }
@@ -206,13 +207,14 @@ namespace Video_rental_system
             {
                 cmd.Parameters.Clear();
                 cmd.Connection = Obj_Conn;
-                QueryString = "Delete from Movie where MovieID =@MoviesID";
-                cmd.Parameters.AddWithValue("@MovieID", "MovieID");
+
+                QueryString = "Delete from Movies where Movie ID = @MovieID";
+
+                cmd.Parameters.AddWithValue("@MovieID", MovieID);
                 cmd.CommandText = QueryString;
-                //connection opened
                 Obj_Conn.Open();
-                // Executed query
                 cmd.ExecuteNonQuery();
+
                 return "Movie Data Deleted Successfully";
             }
             catch (Exception ex)
@@ -228,9 +230,76 @@ namespace Video_rental_system
                     Obj_Conn.Close();
                 }
             }
+
+        }
+        public string Movieupdate(string Rating_Rating, string Title_Title, string year, string label_rental_cost, string label_year, string label_copies, string label_plot, string label_genre)
+
+        {
+            try
+            {
+                cmd.Parameters.Clear();
+                cmd.Connection = Obj_Conn;
+                QueryString = "update Movie set Rating = @Rating, Title = @Title,rental_cost = @label_rental_cost,Year=@label_year,copies=@label_copies,Plot=@label_plot,genre=@genre= @Movie where MovieID =@MovieID";
+                cmd.Parameters.AddWithValue("@Rating", Rating_Rating);
+                cmd.Parameters.AddWithValue("@Title", Title_Title);
+                cmd.Parameters.AddWithValue("@rental_cost", label_rental_cost);
+                cmd.Parameters.AddWithValue("@Year", label_year);
+                cmd.Parameters.AddWithValue("@Copies", label_copies);
+                cmd.Parameters.AddWithValue("@Plot", label_plot);
+                cmd.Parameters.AddWithValue("@genre", label_genre);
+                cmd.CommandText = QueryString;
+                //connection opened
+                Obj_Conn.Open();
+                // Executed query
+                cmd.ExecuteNonQuery();
+                return "Movie Data Updated Successfully";
+            }
+            catch (Exception ex)
+            {
+                // show error Message
+                return ex.Message;
+            }
+            finally
+            {
+                // close connection
+                if (Obj_Conn != null)
+
+                {
+                    Obj_Conn.Close();
+                }
+
+            }
+        }
+        public DataTable Rental_Load()
+
+        {
+            DataTable dt = new DataTable();
+            QueryString = "select * FromAll_Rented";
+            using (da = new SqlDataAdapter(QueryString, Obj_Conn))
+            {
+                Obj_Conn.Open();
+                da.Fill(dt);
+                Obj_Conn.Close();
+            }
+            return dt;
+        }
+
+        public DataTable FillAll_Rented_out()
+        {
+            DataTable dt = new DataTable();
+            QueryString = "select * From All_Rented_out";
+            using (da = new SqlDataAdapter(QueryString, Obj_Conn))
+            {
+                Obj_Conn.Open();
+                da.Fill(dt);
+                Obj_Conn.Close();
+            }
+            return dt;
         }
     }
-}
+
+    
+}           
 
 
 

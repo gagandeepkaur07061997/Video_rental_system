@@ -95,71 +95,116 @@ namespace Video_rental_system
 
         private void btn_update_Click(object sender, EventArgs e)
         {
-           
-                if (First_Name.Text != "" && Last_Name.Text != "" && Address_no.Text != "" && Mobile_Number.Text != "")
-                {
-                    string message = Obj_Data.CustomerUpdate(First_Name.Text, Last_Name.Text, Mobile_Number.Text, Address_no.Text);
-                    MessageBox.Show(message);
-                    First_Name.Text = "";
-                    Last_Name.Text = "";
-                    Mobile_Number.Text = "";
-                    Address_no.Text = "";
-                    Customer_Load();
-                }
-                else
-                {
-                    MessageBox.Show(" All the fileds are required");
-                }
+
+            if (First_Name.Text != "" && Last_Name.Text != "" && Address_no.Text != "" && Mobile_Number.Text != "")
+            {
+                string message = Obj_Data.CustomerUpdate(First_Name.Text, Last_Name.Text, Mobile_Number.Text, Address_no.Text);
+                MessageBox.Show(message);
+                First_Name.Text = "";
+                Last_Name.Text = "";
+                Mobile_Number.Text = "";
+                Address_no.Text = "";
+                Customer_Load();
             }
+            else
+            {
+                MessageBox.Show(" All the fileds are required");
+            }
+        }
 
         private void DGV_customer_CellContentClick_1(object sender, DataGridViewCellEventArgs e)
         {
-         
-                try
-                {
-                    string newvalue = DGV_customer.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString();
-                    this.Text = "Row : " + e.RowIndex.ToString() + " Col : " + e.ColumnIndex.ToString() + " Value = " + newvalue;
-                    Obj_Data.CustomerID = Convert.ToInt32(DGV_customer.Rows[e.RowIndex].Cells[0].Value);
-                    First_Name.Text = DGV_customer.Rows[e.RowIndex].Cells[1].Value.ToString();
-                    Last_Name.Text = DGV_customer.Rows[e.RowIndex].Cells[2].Value.ToString();
-                    Mobile_Number.Text = DGV_customer.Rows[e.RowIndex].Cells[4].Value.ToString();
-                    Address_no.Text = DGV_customer.Rows[e.RowIndex].Cells[3].Value.ToString();
-                    label_customer_details.Text = DGV_customer.Rows[e.RowIndex].Cells[1].Value.ToString() + " " + DGV_customer.Rows[e.RowIndex].Cells[2].Value.ToString();
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Something is wrong", ex.Message);
-                }
+
+            try
+            {
+                string newvalue = DGV_customer.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString();
+                this.Text = "Row : " + e.RowIndex.ToString() + " Col : " + e.ColumnIndex.ToString() + " Value = " + newvalue;
+                Obj_Data.CustomerID = Convert.ToInt32(DGV_customer.Rows[e.RowIndex].Cells[0].Value);
+                First_Name.Text = DGV_customer.Rows[e.RowIndex].Cells[1].Value.ToString();
+                Last_Name.Text = DGV_customer.Rows[e.RowIndex].Cells[2].Value.ToString();
+                Mobile_Number.Text = DGV_customer.Rows[e.RowIndex].Cells[4].Value.ToString();
+                Address_no.Text = DGV_customer.Rows[e.RowIndex].Cells[3].Value.ToString();
+                label_customer_details.Text = DGV_customer.Rows[e.RowIndex].Cells[1].Value.ToString() + " " + DGV_customer.Rows[e.RowIndex].Cells[2].Value.ToString();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Something is wrong", ex.Message);
+            }
+        }
+
+
+        private void DGV_movie_CellContentClick(object sender, DataGridViewCellEventArgs e)
+
+        {
+
+            try
+            {
+                string newvalue = DGV_movie.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString();
+                this.Text = "Row : " + e.RowIndex.ToString() + " Col : " + e.ColumnIndex.ToString() + " Value = " + newvalue;
+                Obj_Data.MovieID = Convert.ToInt32(DGV_customer.Rows[e.RowIndex].Cells[0].Value);
+                text_rating.Text = DGV_movie.Rows[e.RowIndex].Cells[1].Value.ToString();
+                text_title.Text = DGV_movie.Rows[e.RowIndex].Cells[2].Value.ToString();
+                text_year.Text = DGV_movie.Rows[e.RowIndex].Cells[3].Value.ToString();
+                text_rental_cost.Text = DGV_movie.Rows[e.RowIndex].Cells[4].Value.ToString();
+                text_copies.Text = DGV_movie.Rows[e.RowIndex].Cells[5].Value.ToString();
+                text_plot.Text = DGV_movie.Rows[e.RowIndex].Cells[6].Value.ToString();
+                text_genre.Text = DGV_movie.Rows[e.RowIndex].Cells[7].Value.ToString();
+                Movie_Name.Text = DGV_movie.Rows[e.RowIndex].Cells[2].Value.ToString();
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Something is wrong", ex.Message);
             }
 
-        private void btn_add_movie_Click(object sender, EventArgs e)
-        {
-            
+        }
 
-                if (text_rating.Text != "" && text_title.Text != "" && text_year.Text != "" && text_rental_cost.Text != "" && text_copies.Text != "" && text_plot.Text != "" && text_genre.Text != "")
-                {
-                 string message = Obj_Data.MovieInsert( text_rating.Text, text_title.Text, text_year.Text, text_rental_cost.Text, text_copies.Text, text_plot.Text, text_genre.Text);
-                  MessageBox.Show(message);
+        private void btn_add_movie_Click(object sender, EventArgs e)
+
+        {
+
+            if (text_rating.Text != "" && text_title.Text != "" && text_year.Text != "" && text_rental_cost.Text != "" && text_copies.Text != "" && text_plot.Text != "" && text_genre.Text != "")
+            {
+                string message = Obj_Data.Movieinsert(text_rating.Text, text_title.Text, text_year.Text, text_rental_cost.Text, text_copies.Text, text_plot.Text, text_genre.Text);
+                MessageBox.Show(message);
 
                 text_rating.Text = "";
-                text_title.Text = ""; 
+                text_title.Text = "";
                 text_year.Text = "";
                 text_rental_cost.Text = "";
                 text_copies.Text = "";
                 text_plot.Text = "";
                 text_genre.Text = "";
                 Movies_Load();
-                }
-                else
-                {
-                    MessageBox.Show("All the fileds are required");
-                }
             }
+            else
+            {
+                MessageBox.Show("All the fileds are required");
+            }
+        }
 
         private void btn_delete_movie_Click(object sender, EventArgs e)
         {
-            
-                string message = Obj_Data.CustomerDelete();
+
+            string message = Obj_Data.MovieDelete();
+            MessageBox.Show(message);
+            text_rating.Text = "";
+            text_title.Text = "";
+            text_year.Text = "";
+            text_rental_cost.Text = "";
+            text_copies.Text = "";
+            text_plot.Text = "";
+            text_genre.Text = "";
+            Movies_Load();
+
+        }
+
+        private void btn_update_movie_Click(object sender, EventArgs e)
+        {
+
+            if (text_rating.Text != "" && text_title.Text != "" && text_year.Text != "" && text_rental_cost.Text != "" && text_copies.Text != "" && text_plot.Text != "" && text_genre.Text != "")
+            {
+                string message = Obj_Data.Movieinsert(text_rating.Text, text_title.Text, text_year.Text, text_rental_cost.Text, text_copies.Text, text_plot.Text, text_genre.Text);
                 MessageBox.Show(message);
                 text_rating.Text = "";
                 text_title.Text = "";
@@ -168,21 +213,54 @@ namespace Video_rental_system
                 text_copies.Text = "";
                 text_plot.Text = "";
                 text_genre.Text = "";
-               Movies_Load();
+                Movies_Load();
+            }
+            else
+            {
+                MessageBox.Show(" Please fill all the fileds");
             }
         }
+
+        private void All_Rented_Click(object sender, EventArgs e)
+        {
+            Rental_Load();
+        }
+
+        private void Rented_out_Click(object sender, EventArgs e)
+        {
+            
+                DGV_rental.DataSource = null;
+                try
+                {
+                    DGV_rental.DataSource = Obj_Data.FillAll_Rented_out();
+                    DGV_rental.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            
+        }
+
+        private void issue_rental_Click(object sender, EventArgs e)
+        {
+
+        }
     }
+}
 
-    
-    
 
-    
-    
-        
-        
-        
 
-        
 
-    
+
+
+
+
+
+
+
+
+
+
+
 

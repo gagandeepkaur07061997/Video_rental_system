@@ -53,16 +53,15 @@ namespace Video_rental_system
             this.rental_panel = new System.Windows.Forms.Panel();
             this.btn_dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
             this.btn_dateTimePicker = new System.Windows.Forms.DateTimePicker();
-            this.textBox9 = new System.Windows.Forms.TextBox();
-            this.textBox8 = new System.Windows.Forms.TextBox();
+            this.Movie_Name = new System.Windows.Forms.TextBox();
+            this.Customer_Name = new System.Windows.Forms.TextBox();
             this.label13 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.label_rental_details = new System.Windows.Forms.Label();
-            this.btn_update_rental = new System.Windows.Forms.Button();
-            this.btn_Delete_rental = new System.Windows.Forms.Button();
-            this.btn_Add_rental = new System.Windows.Forms.Button();
+            this.rental_returned = new System.Windows.Forms.Button();
+            this.issue_rental = new System.Windows.Forms.Button();
             this.label_movie_details = new System.Windows.Forms.Label();
             this.label_movie_name = new System.Windows.Forms.Label();
             this.Rating_Rating = new System.Windows.Forms.Label();
@@ -83,6 +82,8 @@ namespace Video_rental_system
             this.label_rental_cost = new System.Windows.Forms.Label();
             this.text_rental_cost = new System.Windows.Forms.TextBox();
             this.movie_panel = new System.Windows.Forms.Panel();
+            this.All_Rented = new System.Windows.Forms.Button();
+            this.Rented_out = new System.Windows.Forms.Button();
             this.Movie_Rental.SuspendLayout();
             this.tab_customer.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_customer)).BeginInit();
@@ -147,6 +148,8 @@ namespace Video_rental_system
             this.DGV_movie.Name = "DGV_movie";
             this.DGV_movie.Size = new System.Drawing.Size(492, 244);
             this.DGV_movie.TabIndex = 0;
+            this.DGV_movie.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGV_movie_CellContentClick);
+            this.DGV_movie.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGV_movie_CellContentClick);
             // 
             // tab_rental
             // 
@@ -310,17 +313,16 @@ namespace Video_rental_system
             this.rental_panel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
             this.rental_panel.Controls.Add(this.btn_dateTimePicker2);
             this.rental_panel.Controls.Add(this.btn_dateTimePicker);
-            this.rental_panel.Controls.Add(this.textBox9);
-            this.rental_panel.Controls.Add(this.textBox8);
+            this.rental_panel.Controls.Add(this.Movie_Name);
+            this.rental_panel.Controls.Add(this.Customer_Name);
             this.rental_panel.Controls.Add(this.label13);
             this.rental_panel.Controls.Add(this.label12);
             this.rental_panel.Controls.Add(this.label11);
             this.rental_panel.Controls.Add(this.label10);
             this.rental_panel.Controls.Add(this.label_rental_details);
-            this.rental_panel.Controls.Add(this.btn_update_rental);
-            this.rental_panel.Controls.Add(this.btn_Delete_rental);
-            this.rental_panel.Controls.Add(this.btn_Add_rental);
-            this.rental_panel.Location = new System.Drawing.Point(432, 311);
+            this.rental_panel.Controls.Add(this.rental_returned);
+            this.rental_panel.Controls.Add(this.issue_rental);
+            this.rental_panel.Location = new System.Drawing.Point(349, 300);
             this.rental_panel.Name = "rental_panel";
             this.rental_panel.Size = new System.Drawing.Size(405, 160);
             this.rental_panel.TabIndex = 3;
@@ -339,19 +341,19 @@ namespace Video_rental_system
             this.btn_dateTimePicker.Size = new System.Drawing.Size(200, 20);
             this.btn_dateTimePicker.TabIndex = 10;
             // 
-            // textBox9
+            // Movie_Name
             // 
-            this.textBox9.Location = new System.Drawing.Point(115, 67);
-            this.textBox9.Name = "textBox9";
-            this.textBox9.Size = new System.Drawing.Size(100, 20);
-            this.textBox9.TabIndex = 9;
+            this.Movie_Name.Location = new System.Drawing.Point(115, 67);
+            this.Movie_Name.Name = "Movie_Name";
+            this.Movie_Name.Size = new System.Drawing.Size(100, 20);
+            this.Movie_Name.TabIndex = 9;
             // 
-            // textBox8
+            // Customer_Name
             // 
-            this.textBox8.Location = new System.Drawing.Point(115, 38);
-            this.textBox8.Name = "textBox8";
-            this.textBox8.Size = new System.Drawing.Size(100, 20);
-            this.textBox8.TabIndex = 8;
+            this.Customer_Name.Location = new System.Drawing.Point(115, 38);
+            this.Customer_Name.Name = "Customer_Name";
+            this.Customer_Name.Size = new System.Drawing.Size(100, 20);
+            this.Customer_Name.TabIndex = 8;
             // 
             // label13
             // 
@@ -403,35 +405,26 @@ namespace Video_rental_system
             this.label_rental_details.TabIndex = 3;
             this.label_rental_details.Text = "Rental Details";
             // 
-            // btn_update_rental
+            // rental_returned
             // 
-            this.btn_update_rental.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
-            this.btn_update_rental.Location = new System.Drawing.Point(327, 116);
-            this.btn_update_rental.Name = "btn_update_rental";
-            this.btn_update_rental.Size = new System.Drawing.Size(75, 23);
-            this.btn_update_rental.TabIndex = 2;
-            this.btn_update_rental.Text = "Update";
-            this.btn_update_rental.UseVisualStyleBackColor = false;
+            this.rental_returned.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
+            this.rental_returned.Location = new System.Drawing.Point(327, 116);
+            this.rental_returned.Name = "rental_returned";
+            this.rental_returned.Size = new System.Drawing.Size(75, 23);
+            this.rental_returned.TabIndex = 2;
+            this.rental_returned.Text = "returned";
+            this.rental_returned.UseVisualStyleBackColor = false;
             // 
-            // btn_Delete_rental
+            // issue_rental
             // 
-            this.btn_Delete_rental.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
-            this.btn_Delete_rental.Location = new System.Drawing.Point(321, 70);
-            this.btn_Delete_rental.Name = "btn_Delete_rental";
-            this.btn_Delete_rental.Size = new System.Drawing.Size(75, 23);
-            this.btn_Delete_rental.TabIndex = 1;
-            this.btn_Delete_rental.Text = "Delete";
-            this.btn_Delete_rental.UseVisualStyleBackColor = false;
-            // 
-            // btn_Add_rental
-            // 
-            this.btn_Add_rental.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
-            this.btn_Add_rental.Location = new System.Drawing.Point(321, 27);
-            this.btn_Add_rental.Name = "btn_Add_rental";
-            this.btn_Add_rental.Size = new System.Drawing.Size(75, 23);
-            this.btn_Add_rental.TabIndex = 0;
-            this.btn_Add_rental.Text = "Add";
-            this.btn_Add_rental.UseVisualStyleBackColor = false;
+            this.issue_rental.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
+            this.issue_rental.Location = new System.Drawing.Point(321, 70);
+            this.issue_rental.Name = "issue_rental";
+            this.issue_rental.Size = new System.Drawing.Size(75, 23);
+            this.issue_rental.TabIndex = 1;
+            this.issue_rental.Text = "Issue";
+            this.issue_rental.UseVisualStyleBackColor = false;
+            this.issue_rental.Click += new System.EventHandler(this.issue_rental_Click);
             // 
             // label_movie_details
             // 
@@ -586,6 +579,7 @@ namespace Video_rental_system
             this.btn_update_movie.TabIndex = 17;
             this.btn_update_movie.Text = "Update";
             this.btn_update_movie.UseVisualStyleBackColor = false;
+            this.btn_update_movie.Click += new System.EventHandler(this.btn_update_movie_Click);
             // 
             // label_rental_cost
             // 
@@ -631,6 +625,28 @@ namespace Video_rental_system
             this.movie_panel.Size = new System.Drawing.Size(327, 261);
             this.movie_panel.TabIndex = 2;
             // 
+            // All_Rented
+            // 
+            this.All_Rented.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.All_Rented.Location = new System.Drawing.Point(770, 333);
+            this.All_Rented.Name = "All_Rented";
+            this.All_Rented.Size = new System.Drawing.Size(75, 23);
+            this.All_Rented.TabIndex = 4;
+            this.All_Rented.Text = "All Rented ";
+            this.All_Rented.UseVisualStyleBackColor = true;
+            this.All_Rented.Click += new System.EventHandler(this.All_Rented_Click);
+            // 
+            // Rented_out
+            // 
+            this.Rented_out.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Rented_out.Location = new System.Drawing.Point(760, 376);
+            this.Rented_out.Name = "Rented_out";
+            this.Rented_out.Size = new System.Drawing.Size(93, 23);
+            this.Rented_out.TabIndex = 5;
+            this.Rented_out.Text = "Rented out";
+            this.Rented_out.UseVisualStyleBackColor = true;
+            this.Rented_out.Click += new System.EventHandler(this.Rented_out_Click);
+            // 
             // Videorental
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -638,6 +654,8 @@ namespace Video_rental_system
             this.BackColor = System.Drawing.Color.Black;
             this.BackgroundImage = global::Video_rental_system.Properties.Resources.Abccccc;
             this.ClientSize = new System.Drawing.Size(857, 483);
+            this.Controls.Add(this.Rented_out);
+            this.Controls.Add(this.All_Rented);
             this.Controls.Add(this.rental_panel);
             this.Controls.Add(this.movie_panel);
             this.Controls.Add(this.customer_panel);
@@ -688,12 +706,11 @@ namespace Video_rental_system
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label_rental_details;
-        private System.Windows.Forms.Button btn_update_rental;
-        private System.Windows.Forms.Button btn_Delete_rental;
-        private System.Windows.Forms.Button btn_Add_rental;
+        private System.Windows.Forms.Button rental_returned;
+        private System.Windows.Forms.Button issue_rental;
         private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.TextBox textBox9;
-        private System.Windows.Forms.TextBox textBox8;
+        private System.Windows.Forms.TextBox Movie_Name;
+        private System.Windows.Forms.TextBox Customer_Name;
         private System.Windows.Forms.DateTimePicker btn_dateTimePicker2;
         private System.Windows.Forms.DateTimePicker btn_dateTimePicker;
         private DataGridViewCellEventHandler DGV_customer_CellContentClick;
@@ -717,6 +734,8 @@ namespace Video_rental_system
         private Label label_rental_cost;
         private TextBox text_rental_cost;
         private Panel movie_panel;
+        private Button All_Rented;
+        private Button Rented_out;
     }
 }
 
