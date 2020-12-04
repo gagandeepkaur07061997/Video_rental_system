@@ -50,7 +50,7 @@ namespace Video_rental_system
         public DataTable FillRental_Data()
         {
             DataTable dt = new DataTable();
-            QueryString = "select * From RentedMovies";
+            QueryString = "select * From All_Rented";
             using (da = new SqlDataAdapter(QueryString, Obj_Conn))
             {
                 Obj_Conn.Open();
@@ -239,7 +239,7 @@ namespace Video_rental_system
             {
                 cmd.Parameters.Clear();
                 cmd.Connection = Obj_Conn;
-                QueryString = "update Movie set Rating = @Rating, Title = @Title,rental_cost = @label_rental_cost,Year=@label_year,copies=@label_copies,Plot=@label_plot,genre=@genre= @Movie where MovieID =@MovieID";
+                QueryString = "update Movie set Rating = @Rating, Title = @Title,rental_cost = @label_rental_cost,Year=@label_year,copies=@label_copies,Plot=@label_plot,genre=@label_genre= @Movie where MovieID =@MovieID";
                 cmd.Parameters.AddWithValue("@Rating", Rating_Rating);
                 cmd.Parameters.AddWithValue("@Title", Title_Title);
                 cmd.Parameters.AddWithValue("@rental_cost", label_rental_cost);
@@ -296,10 +296,105 @@ namespace Video_rental_system
             }
             return dt;
         }
-    }
 
+        public string IssueMovie(DateTime Issue_date)
+        {
+            try
+            {
+                cmd.Parameters.Clear();
+                cmd.Connection = Obj_Conn;
+                QueryString = "Insert into RentedMovies(MovieIDFK,CustIDFK,DateRented,DateReturned) values(@MovieID,@CustID,@Issue_date,Null)";
+                cmd.Parameters.AddWithValue("@CustID", CustomerID);
+                cmd.Parameters.AddWithValue("@MovieID", MovieID);
+                cmd.Parameters.AddWithValue("@Issue_date", Issue_date);
+                cmd.CommandText = QueryString;
+                //connection opened
+                Obj_Conn.Open();
+                // Executed query
+                cmd.ExecuteNonQuery();
+                return "Movies issued to customer";
+            }
+            catch (Exception ex)
+            {
+                // code to show error Message
+                return ex.Message;
+            }
+            finally
+            {
+                // close connection
+                if (Obj_Conn != null)
+                {
+                    Obj_Conn.Close();
+                }
+            }
+        }
+
+        //code to fill the customer data by using update query
+        public string ReturnMovie(DateTime Return_Date)
+        {
+            try
+            {
+                cmd.Parameters.Clear();
+                cmd.Connection = Obj_Conn;
+                QueryString = "Update RentedMovies set DateReturned=@Return_date where RMID = @RMID";
+                cmd.Parameters.AddWithValue("@Return_date", Return_Date);
+                cmd.Parameters.AddWithValue("@RMID", Rental_ID);
+                cmd.CommandText = QueryString;
+                //connection opened
+                Obj_Conn.Open();
+                // Executed query
+                cmd.ExecuteNonQuery();
+                return "Movies returned from customer";
+            }
+            catch (Exception ex)
+            {
+                // code to show error Message
+                return ex.Message;
+            }
+            finally
+            {
+                // close connection
+                if (Obj_Conn != null)
+                {
+                    Obj_Conn.Close();
+                }
+            }
+        }
+
+        public DataTable FillPopular_Customer_Data()
+        {
+            DataTable dt = new DataTable();
+            QueryString = "select * From Popular_Customer";
+            using (da = new SqlDataAdapter(QueryString, Obj_Conn))
+            {
+                Obj_Conn.Open();
+                da.Fill(dt);
+                Obj_Conn.Close();
+            }
+            return dt;
+        }
+
+        public DataTable FillPopular_movie_Data()
+        {
+            DataTable dt = new DataTable();
+            QueryString = "select * From Popular_movie";
+            using (da = new SqlDataAdapter(QueryString, Obj_Conn))
+            {
+                Obj_Conn.Open();
+                da.Fill(dt);
+                Obj_Conn.Close();
+            }
+            return dt;
+        }
+    }
+}
+
+         
     
-}           
+    
+
+
+        
 
 
 

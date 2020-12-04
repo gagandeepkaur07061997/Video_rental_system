@@ -21,6 +21,8 @@ namespace Video_rental_system
             Customer_Load();
             Movies_Load();
             Rental_Load();
+            popularcustomer_load();
+            popularmovie_load();
         }
         public void Customer_Load()
         {
@@ -124,7 +126,7 @@ namespace Video_rental_system
                 Last_Name.Text = DGV_customer.Rows[e.RowIndex].Cells[2].Value.ToString();
                 Mobile_Number.Text = DGV_customer.Rows[e.RowIndex].Cells[4].Value.ToString();
                 Address_no.Text = DGV_customer.Rows[e.RowIndex].Cells[3].Value.ToString();
-                label_customer_details.Text = DGV_customer.Rows[e.RowIndex].Cells[1].Value.ToString() + " " + DGV_customer.Rows[e.RowIndex].Cells[2].Value.ToString();
+                Customer_Name.Text = DGV_customer.Rows[e.RowIndex].Cells[1].Value.ToString() + " " + DGV_customer.Rows[e.RowIndex].Cells[2].Value.ToString();
             }
             catch (Exception ex)
             {
@@ -228,26 +230,132 @@ namespace Video_rental_system
 
         private void Rented_out_Click(object sender, EventArgs e)
         {
-            
-                DGV_rental.DataSource = null;
-                try
-                {
-                    DGV_rental.DataSource = Obj_Data.FillAll_Rented_out();
-                    DGV_rental.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells);
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message);
-                }
-            
+
+            DGV_rental.DataSource = null;
+            try
+            {
+                DGV_rental.DataSource = Obj_Data.FillAll_Rented_out();
+                DGV_rental.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
         }
 
         private void issue_rental_Click(object sender, EventArgs e)
         {
 
+            if (Movie_Name.Text != "" && Customer_Name.Text != "")
+            {
+                string message = Obj_Data.IssueMovie(Convert.ToDateTime(btn_dateTimePicker.Text));
+                MessageBox.Show(message);
+                text_rating.Text = "";
+                text_title.Text = "";
+                text_year.Text = "";
+                text_rental_cost.Text = "";
+                text_copies.Text = "";
+                text_plot.Text = "";
+                text_genre.Text = "";
+                Movie_Name.Text = "";
+                First_Name.Text = "";
+                Last_Name.Text = "";
+                Mobile_Number.Text = "";
+                Address_no.Text = "";
+                Customer_Name.Text = "";
+
+                Rental_Load();
+            }
+            else
+            {
+                // code to show the message if user did not fill all the details
+                MessageBox.Show("Please fill all the required details and add the new details by clicking Add button");
+            }
         }
+
+        private void rental_returned_Click(object sender, EventArgs e)
+        {
+            
+                if (movie_name_rental.Text != "" && customer_name_rental.Text != "")
+                {
+                    string message = Obj_Data.ReturnMovie(Convert.ToDateTime(btn_dateTimePicker2.Text));
+                    MessageBox.Show(message);
+                text_rating.Text = "";
+                text_title.Text = "";
+                text_year.Text = "";
+                text_rental_cost.Text = "";
+                text_copies.Text = "";
+                text_plot.Text = "";
+                text_genre.Text = "";
+                movie_name_rental.Text = "";
+                F_Name.Text = "";
+                L_Name.Text = "";
+                moile_number.Text = "";
+                Address_label.Text = "";
+                customer_name_rental.Text = "";
+                
+                Rental_Load();
+                }
+                else
+                {
+                    // code to show the message if user did not fill all the details
+                    MessageBox.Show("Please fill all the required details and add the new details by clicking Add button");
+                }
+            }
+
+        private void DGV_rental_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                string newvalue = DGV_rental.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString();
+                this.Text = "Row : " + e.RowIndex.ToString() + " Col : " + e.ColumnIndex.ToString() + " Value = " + newvalue;
+                Obj_Data.Rental_ID = Convert.ToInt32(DGV_rental.Rows[e.RowIndex].Cells[6].Value);
+                Customer_Name.Text = DGV_rental.Rows[e.RowIndex].Cells[0].Value.ToString() + " " + DGV_rental.Rows[e.RowIndex].Cells[1].Value.ToString();
+                Movie_Name.Text = DGV_rental.Rows[e.RowIndex].Cells[2].Value.ToString();
+                btn_dateTimePicker.Text = DGV_rental.Rows[e.RowIndex].Cells[4].Value.ToString();
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Something is wrong", ex.Message);
+            }
+        }
+
+        public void popularcustomer_load()
+        {
+            DGV_Popularcustomer.DataSource = null;
+            try
+            {
+                DGV_Popularcustomer.DataSource = Obj_Data.FillPopular_Customer_Data();
+                DGV_Popularcustomer.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        public void popularmovie_load()
+        {
+            DGV_Popularmovie.DataSource = null;
+            try
+            {
+                DGV_Popularmovie.DataSource = Obj_Data.FillPopular_movie_Data();
+                DGV_Popularmovie.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+
     }
-}
+    }
+    
+    
+
 
 
 
