@@ -8,13 +8,15 @@ using System.Threading.Tasks;
 
 namespace Video_rental_system
 {
-    class Database_Class
+   public class Database_Class
     {
         private SqlConnection Obj_Conn = new SqlConnection();
         private readonly SqlCommand cmd = new SqlCommand();
         private readonly SqlDataReader Data_Reader;
         private SqlDataAdapter da = new SqlDataAdapter();
         string QueryString;
+        public  string ConnString = @"Data Source=DESKTOP-19R6C8C\SQLEXPRESS;Initial Catalog=Videorental_system;Integrated Security=True";
+        
         public int CustomerID, MovieID, Rental_ID;
         public Database_Class()
         {
@@ -22,7 +24,7 @@ namespace Video_rental_system
             Obj_Conn.ConnectionString = ConnString;
         }
 
-        public DataTable FillCustomer_Data()
+        public DataTable FillCustomer_Data()// code to fill the customer data in its DGV//
         {
             DataTable dt = new DataTable();
             QueryString = "select * From Customer";
@@ -34,7 +36,7 @@ namespace Video_rental_system
             }
             return dt;
         }
-        public DataTable FillMovies_Data()
+        public DataTable FillMovies_Data()//code to load movies data in its DGV//
         {
             DataTable dt = new DataTable();
             QueryString = "select * From Movies";
@@ -47,7 +49,7 @@ namespace Video_rental_system
             return dt;
         }
 
-        public DataTable FillRental_Data()
+        public DataTable FillRental_Data()//code to show the data of rental in its DGV//
         {
             DataTable dt = new DataTable();
             QueryString = "select * From All_Rented";
@@ -60,7 +62,7 @@ namespace Video_rental_system
             return dt;
         }
 
-        public string CustomerInsert(string FName, string LName, string Mobile, string Address)
+        public string CustomerInsert(string FName, string LName, string Mobile, string Address)// code to fill the customer data in the tabel on selecting or typing any data//
         {
             try
             {
@@ -93,7 +95,7 @@ namespace Video_rental_system
 
             }
         }
-        public string CustomerDelete()
+        public string CustomerDelete()// code to delete the customer data from its DGV on selecting or typing any data//
         {
             try
             {
@@ -127,7 +129,7 @@ namespace Video_rental_system
                 }
             }
         }
-        public string CustomerUpdate(string FName, string LName, string Mobile, string Address)
+        public string CustomerUpdate(string FName, string LName, string Mobile, string Address)//code to update the customer data in its DGV on selecting or typing any data//
         {
             try
             {
@@ -163,7 +165,7 @@ namespace Video_rental_system
             }
 
         }
-        public string Movieinsert(string Rating, string Title, string year, string rental_cost, string copies, string plot, string genre)
+        public string Movieinsert(string Rating, string Title, string year, string rental_cost, string copies, string plot, string genre)//code to insert the movie data in its DGV on selecting or typing any data//
         {
             try
             {
@@ -201,14 +203,14 @@ namespace Video_rental_system
                 }
             }
         }
-        public string MovieDelete()
+        public string MovieDelete()//code is called to delete the movie data in its DGV on selecting or typing any data//
         {
             try
             {
                 cmd.Parameters.Clear();
                 cmd.Connection = Obj_Conn;
 
-                QueryString = "Delete from Movies where Movie ID = @MovieID";
+                QueryString = "Delete from Movies where MovieID = @MovieID";
 
                 cmd.Parameters.AddWithValue("@MovieID", MovieID);
                 cmd.CommandText = QueryString;
@@ -232,27 +234,24 @@ namespace Video_rental_system
             }
 
         }
-        public string Movieupdate(string Rating_Rating, string Title_Title, string year, string label_rental_cost, string label_year, string label_copies, string label_plot, string label_genre)
-
+        public string updatemovie(string Rating, string Title, string year, string rental_cost, string copies, string plot, string genre)//code is called to update the movie data in its DGV on selecting or typing any data//
         {
             try
             {
-                cmd.Parameters.Clear();
-                cmd.Connection = Obj_Conn;
-                QueryString = "update Movie set Rating = @Rating, Title = @Title,rental_cost = @label_rental_cost,Year=@label_year,copies=@label_copies,Plot=@label_plot,genre=@label_genre= @Movie where MovieID =@MovieID";
-                cmd.Parameters.AddWithValue("@Rating", Rating_Rating);
-                cmd.Parameters.AddWithValue("@Title", Title_Title);
-                cmd.Parameters.AddWithValue("@rental_cost", label_rental_cost);
-                cmd.Parameters.AddWithValue("@Year", label_year);
-                cmd.Parameters.AddWithValue("@Copies", label_copies);
-                cmd.Parameters.AddWithValue("@Plot", label_plot);
-                cmd.Parameters.AddWithValue("@genre", label_genre);
+                cmd.Parameters.AddWithValue("@Rating", Rating);
+                cmd.Parameters.AddWithValue("@Title", Title);
+                cmd.Parameters.AddWithValue("@Year", year);
+                cmd.Parameters.AddWithValue("@Rental_cost", rental_cost);
+
+                cmd.Parameters.AddWithValue("@Copies", copies);
+                cmd.Parameters.AddWithValue("@Plot", plot);
+                cmd.Parameters.AddWithValue("@Genre", genre);
                 cmd.CommandText = QueryString;
                 //connection opened
                 Obj_Conn.Open();
                 // Executed query
                 cmd.ExecuteNonQuery();
-                return "Movie Data Updated Successfully";
+                return "Movie data Updated Successfully";
             }
             catch (Exception ex)
             {
@@ -263,14 +262,12 @@ namespace Video_rental_system
             {
                 // close connection
                 if (Obj_Conn != null)
-
                 {
                     Obj_Conn.Close();
                 }
-
             }
         }
-        public DataTable Rental_Load()
+        public DataTable Rental_Load()//code is linked to insert the rental data in DGV//
 
         {
             DataTable dt = new DataTable();
@@ -284,7 +281,7 @@ namespace Video_rental_system
             return dt;
         }
 
-        public DataTable FillAll_Rented_out()
+        public DataTable FillAll_Rented_out()//code is linked to fill data of All rented out button//
         {
             DataTable dt = new DataTable();
             QueryString = "select * From All_Rented_out";
@@ -297,7 +294,7 @@ namespace Video_rental_system
             return dt;
         }
 
-        public string IssueMovie(DateTime Issue_date)
+        public string IssueMovie(DateTime Issue_date)//code is called to show data of issued movie to the customer//
         {
             try
             {
@@ -330,7 +327,7 @@ namespace Video_rental_system
         }
 
         //code to fill the customer data by using update query
-        public string ReturnMovie(DateTime Return_Date)
+        public string ReturnMovie(DateTime Return_Date)//code is called to show data of returned movie//
         {
             try
             {
@@ -361,7 +358,7 @@ namespace Video_rental_system
             }
         }
 
-        public DataTable FillPopular_Customer_Data()
+        public DataTable FillPopular_Customer_Data()//code is called to fill the popular customer data//
         {
             DataTable dt = new DataTable();
             QueryString = "select * From Popular_Customer";

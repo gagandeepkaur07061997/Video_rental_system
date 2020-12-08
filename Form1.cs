@@ -24,7 +24,7 @@ namespace Video_rental_system
             popularcustomer_load();
             popularmovie_load();
         }
-        public void Customer_Load()
+        public void Customer_Load()//code to show customer data in DGV of customer//
         {
             DGV_customer.DataSource = null;
             try
@@ -37,7 +37,7 @@ namespace Video_rental_system
                 MessageBox.Show(ex.Message);
             }
         }
-        public void Movies_Load()
+        public void Movies_Load()//code to show movie data in DGV of movie//
         {
             DGV_movie.DataSource = null;
             try
@@ -50,7 +50,7 @@ namespace Video_rental_system
                 MessageBox.Show(ex.Message);
             }
         }
-        public void Rental_Load()
+        public void Rental_Load()//code to show data of movie in DGV of movie//
         {
             DGV_rental.DataSource = null;
             try
@@ -64,7 +64,7 @@ namespace Video_rental_system
             }
         }
 
-        private void btn_add_Click(object sender, EventArgs e)
+        private void btn_add_Click(object sender, EventArgs e)//code to add the data od customer on buton click//
         {
 
             if (First_Name.Text != "" && Last_Name.Text != "" && Address_no.Text != "" && Mobile_Number.Text != "")
@@ -83,7 +83,7 @@ namespace Video_rental_system
             }
         }
 
-        private void btn_delete_Click(object sender, EventArgs e)
+        private void btn_delete_Click(object sender, EventArgs e)//code to delete the data of customer on button click//
         {
 
             string message = Obj_Data.CustomerDelete();
@@ -95,7 +95,7 @@ namespace Video_rental_system
             Customer_Load();
         }
 
-        private void btn_update_Click(object sender, EventArgs e)
+        private void btn_update_Click(object sender, EventArgs e)//code to update the data of customer on button click//
         {
 
             if (First_Name.Text != "" && Last_Name.Text != "" && Address_no.Text != "" && Mobile_Number.Text != "")
@@ -114,7 +114,7 @@ namespace Video_rental_system
             }
         }
 
-        private void DGV_customer_CellContentClick_1(object sender, DataGridViewCellEventArgs e)
+        private void DGV_customer_CellContentClick_1(object sender, DataGridViewCellEventArgs e)//code to show data in rental and customer tabel while selecting from the DGV of customer//
         {
 
             try
@@ -135,7 +135,7 @@ namespace Video_rental_system
         }
 
 
-        private void DGV_movie_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void DGV_movie_CellContentClick(object sender, DataGridViewCellEventArgs e)//code to show data in rental and movie tabel while selecting from the DGV of movie//
 
         {
 
@@ -161,7 +161,7 @@ namespace Video_rental_system
 
         }
 
-        private void btn_add_movie_Click(object sender, EventArgs e)
+        private void btn_add_movie_Click(object sender, EventArgs e)//code to add data of movie on button click//
 
         {
 
@@ -185,7 +185,7 @@ namespace Video_rental_system
             }
         }
 
-        private void btn_delete_movie_Click(object sender, EventArgs e)
+        private void btn_delete_movie_Click(object sender, EventArgs e)//code to add delete data of movie on button click//
         {
 
             string message = Obj_Data.MovieDelete();
@@ -201,12 +201,12 @@ namespace Video_rental_system
 
         }
 
-        private void btn_update_movie_Click(object sender, EventArgs e)
+        private void btn_update_movie_Click(object sender, EventArgs e)//code to update data of movie on button click//
         {
 
             if (text_rating.Text != "" && text_title.Text != "" && text_year.Text != "" && text_rental_cost.Text != "" && text_copies.Text != "" && text_plot.Text != "" && text_genre.Text != "")
             {
-                string message = Obj_Data.Movieinsert(text_rating.Text, text_title.Text, text_year.Text, text_rental_cost.Text, text_copies.Text, text_plot.Text, text_genre.Text);
+                string message = Obj_Data.updatemovie(text_rating.Text, text_title.Text, text_year.Text, text_rental_cost.Text, text_copies.Text, text_plot.Text, text_genre.Text);
                 MessageBox.Show(message);
                 text_rating.Text = "";
                 text_title.Text = "";
@@ -219,16 +219,17 @@ namespace Video_rental_system
             }
             else
             {
-                MessageBox.Show(" Please fill all the fileds");
+                MessageBox.Show("Please fill all the fileds then press Add button");
             }
         }
 
-        private void All_Rented_Click(object sender, EventArgs e)
+
+        private void All_Rented_Click(object sender, EventArgs e)//code to load the data of All rentaled in its DGV//
         {
             Rental_Load();
         }
 
-        private void Rented_out_Click(object sender, EventArgs e)
+        private void Rented_out_Click(object sender, EventArgs e)//code to load the data of rentaled out in its DGV//
         {
 
             DGV_rental.DataSource = null;
@@ -244,7 +245,7 @@ namespace Video_rental_system
 
         }
 
-        private void issue_rental_Click(object sender, EventArgs e)
+        private void issue_rental_Click(object sender, EventArgs e)// code to issue movie to any customer on button click//
         {
 
             if (Movie_Name.Text != "" && Customer_Name.Text != "")
@@ -269,12 +270,12 @@ namespace Video_rental_system
             }
             else
             {
-                // code to show the message if user did not fill all the details
+                // code to show the message if user did not fill all the details//
                 MessageBox.Show("Please fill all the required details and add the new details by clicking Add button");
             }
         }
 
-        private void rental_returned_Click(object sender, EventArgs e)
+        private void rental_returned_Click(object sender, EventArgs e)//code to load data of returened movie of any customer on button click//
         {
             
                 if (movie_name_rental.Text != "" && customer_name_rental.Text != "")
@@ -299,12 +300,12 @@ namespace Video_rental_system
                 }
                 else
                 {
-                    // code to show the message if user did not fill all the details
+                    // code to show the message if user did not fill all the details//
                     MessageBox.Show("Please fill all the required details and add the new details by clicking Add button");
                 }
             }
 
-        private void DGV_rental_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void DGV_rental_CellContentClick(object sender, DataGridViewCellEventArgs e)//code to add data of rental in its DGV //
         {
             try
             {
@@ -318,11 +319,11 @@ namespace Video_rental_system
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Something is wrong", ex.Message);
+                MessageBox.Show("Something is wrong", ex.Message);//code to show message//
             }
         }
 
-        public void popularcustomer_load()
+        public void popularcustomer_load()//code to show popular customer//
         {
             DGV_Popularcustomer.DataSource = null;
             try
@@ -336,7 +337,7 @@ namespace Video_rental_system
             }
         }
 
-        public void popularmovie_load()
+        public void popularmovie_load()//code to show the data of popular movie//
         {
             DGV_Popularmovie.DataSource = null;
             try

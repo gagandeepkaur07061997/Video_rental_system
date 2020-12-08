@@ -38,6 +38,8 @@ namespace Video_rental_system
             this.tab_rental = new System.Windows.Forms.TabPage();
             this.DGV_rental = new System.Windows.Forms.DataGridView();
             this.Most_Popular = new System.Windows.Forms.TabPage();
+            this.Popular_Movies = new System.Windows.Forms.Label();
+            this.Popular_Customer = new System.Windows.Forms.Label();
             this.DGV_Popularmovie = new System.Windows.Forms.DataGridView();
             this.DGV_Popularcustomer = new System.Windows.Forms.DataGridView();
             this.customer_panel = new System.Windows.Forms.Panel();
@@ -87,8 +89,6 @@ namespace Video_rental_system
             this.movie_panel = new System.Windows.Forms.Panel();
             this.All_Rented = new System.Windows.Forms.Button();
             this.Rented_out = new System.Windows.Forms.Button();
-            this.Popular_Customer = new System.Windows.Forms.Label();
-            this.Popular_Movies = new System.Windows.Forms.Label();
             this.Movie_Rental.SuspendLayout();
             this.tab_customer.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_customer)).BeginInit();
@@ -197,6 +197,35 @@ namespace Video_rental_system
             this.Most_Popular.TabIndex = 3;
             this.Most_Popular.Text = "Most popular";
             // 
+            // Popular_Movies
+            // 
+            this.Popular_Movies.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.Popular_Movies.AutoSize = true;
+            this.Popular_Movies.BackColor = System.Drawing.Color.LightGray;
+            this.Popular_Movies.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.Popular_Movies.ForeColor = System.Drawing.Color.Maroon;
+            this.Popular_Movies.Location = new System.Drawing.Point(352, 11);
+            this.Popular_Movies.Margin = new System.Windows.Forms.Padding(5, 0, 3, 0);
+            this.Popular_Movies.Name = "Popular_Movies";
+            this.Popular_Movies.Size = new System.Drawing.Size(99, 15);
+            this.Popular_Movies.TabIndex = 3;
+            this.Popular_Movies.Text = "Popular_Movies";
+            this.Popular_Movies.UseMnemonic = false;
+            // 
+            // Popular_Customer
+            // 
+            this.Popular_Customer.AutoSize = true;
+            this.Popular_Customer.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.Popular_Customer.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.Popular_Customer.ForeColor = System.Drawing.Color.Maroon;
+            this.Popular_Customer.Location = new System.Drawing.Point(81, 12);
+            this.Popular_Customer.Name = "Popular_Customer";
+            this.Popular_Customer.Size = new System.Drawing.Size(108, 15);
+            this.Popular_Customer.TabIndex = 2;
+            this.Popular_Customer.Text = "Popular Customer";
+            // 
             // DGV_Popularmovie
             // 
             this.DGV_Popularmovie.BackgroundColor = System.Drawing.Color.Yellow;
@@ -217,7 +246,7 @@ namespace Video_rental_system
             // 
             // customer_panel
             // 
-            this.customer_panel.BackColor = System.Drawing.Color.Lime;
+            this.customer_panel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
             this.customer_panel.Controls.Add(this.btn_update);
             this.customer_panel.Controls.Add(this.btn_delete);
             this.customer_panel.Controls.Add(this.btn_add);
@@ -354,7 +383,7 @@ namespace Video_rental_system
             // 
             // rental_panel
             // 
-            this.rental_panel.BackColor = System.Drawing.Color.Lime;
+            this.rental_panel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
             this.rental_panel.Controls.Add(this.btn_dateTimePicker2);
             this.rental_panel.Controls.Add(this.btn_dateTimePicker);
             this.rental_panel.Controls.Add(this.Movie_Name);
@@ -403,6 +432,7 @@ namespace Video_rental_system
             // 
             this.returned_date.AutoSize = true;
             this.returned_date.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.returned_date.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.returned_date.Location = new System.Drawing.Point(17, 124);
             this.returned_date.Name = "returned_date";
             this.returned_date.Size = new System.Drawing.Size(79, 15);
@@ -413,6 +443,7 @@ namespace Video_rental_system
             // 
             this.issue_date.AutoSize = true;
             this.issue_date.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.issue_date.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.issue_date.Location = new System.Drawing.Point(17, 97);
             this.issue_date.Name = "issue_date";
             this.issue_date.Size = new System.Drawing.Size(60, 15);
@@ -423,6 +454,7 @@ namespace Video_rental_system
             // 
             this.movie_name_rental.AutoSize = true;
             this.movie_name_rental.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.movie_name_rental.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.movie_name_rental.Location = new System.Drawing.Point(17, 70);
             this.movie_name_rental.Name = "movie_name_rental";
             this.movie_name_rental.Size = new System.Drawing.Size(69, 15);
@@ -433,6 +465,7 @@ namespace Video_rental_system
             // 
             this.customer_name_rental.AutoSize = true;
             this.customer_name_rental.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.customer_name_rental.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.customer_name_rental.Location = new System.Drawing.Point(12, 45);
             this.customer_name_rental.Name = "customer_name_rental";
             this.customer_name_rental.Size = new System.Drawing.Size(84, 15);
@@ -452,9 +485,9 @@ namespace Video_rental_system
             // rental_returned
             // 
             this.rental_returned.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
-            this.rental_returned.Location = new System.Drawing.Point(327, 116);
+            this.rental_returned.Location = new System.Drawing.Point(321, 99);
             this.rental_returned.Name = "rental_returned";
-            this.rental_returned.Size = new System.Drawing.Size(75, 23);
+            this.rental_returned.Size = new System.Drawing.Size(75, 40);
             this.rental_returned.TabIndex = 2;
             this.rental_returned.Text = "returned";
             this.rental_returned.UseVisualStyleBackColor = false;
@@ -463,9 +496,9 @@ namespace Video_rental_system
             // issue_rental
             // 
             this.issue_rental.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
-            this.issue_rental.Location = new System.Drawing.Point(321, 70);
+            this.issue_rental.Location = new System.Drawing.Point(321, 56);
             this.issue_rental.Name = "issue_rental";
-            this.issue_rental.Size = new System.Drawing.Size(75, 23);
+            this.issue_rental.Size = new System.Drawing.Size(75, 37);
             this.issue_rental.TabIndex = 1;
             this.issue_rental.Text = "Issue";
             this.issue_rental.UseVisualStyleBackColor = false;
@@ -495,6 +528,7 @@ namespace Video_rental_system
             // 
             this.Rating_Rating.AutoSize = true;
             this.Rating_Rating.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.Rating_Rating.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.Rating_Rating.Location = new System.Drawing.Point(9, 69);
             this.Rating_Rating.Name = "Rating_Rating";
             this.Rating_Rating.Size = new System.Drawing.Size(43, 15);
@@ -505,6 +539,7 @@ namespace Video_rental_system
             // 
             this.Title_Title.AutoSize = true;
             this.Title_Title.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.Title_Title.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.Title_Title.Location = new System.Drawing.Point(10, 101);
             this.Title_Title.Name = "Title_Title";
             this.Title_Title.Size = new System.Drawing.Size(29, 15);
@@ -515,6 +550,7 @@ namespace Video_rental_system
             // 
             this.label_year.AutoSize = true;
             this.label_year.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.label_year.ForeColor = System.Drawing.SystemColors.Control;
             this.label_year.Location = new System.Drawing.Point(9, 131);
             this.label_year.Name = "label_year";
             this.label_year.Size = new System.Drawing.Size(31, 15);
@@ -525,6 +561,7 @@ namespace Video_rental_system
             // 
             this.label_copies.AutoSize = true;
             this.label_copies.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.label_copies.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.label_copies.Location = new System.Drawing.Point(11, 176);
             this.label_copies.Name = "label_copies";
             this.label_copies.Size = new System.Drawing.Size(41, 15);
@@ -535,6 +572,7 @@ namespace Video_rental_system
             // 
             this.label_plot.AutoSize = true;
             this.label_plot.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.label_plot.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.label_plot.Location = new System.Drawing.Point(13, 202);
             this.label_plot.Name = "label_plot";
             this.label_plot.Size = new System.Drawing.Size(27, 15);
@@ -545,6 +583,7 @@ namespace Video_rental_system
             // 
             this.label_genre.AutoSize = true;
             this.label_genre.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.label_genre.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.label_genre.Location = new System.Drawing.Point(10, 230);
             this.label_genre.Name = "label_genre";
             this.label_genre.Size = new System.Drawing.Size(38, 15);
@@ -596,9 +635,9 @@ namespace Video_rental_system
             // btn_add_movie
             // 
             this.btn_add_movie.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
-            this.btn_add_movie.Location = new System.Drawing.Point(240, 54);
+            this.btn_add_movie.Location = new System.Drawing.Point(240, 38);
             this.btn_add_movie.Name = "btn_add_movie";
-            this.btn_add_movie.Size = new System.Drawing.Size(75, 23);
+            this.btn_add_movie.Size = new System.Drawing.Size(75, 39);
             this.btn_add_movie.TabIndex = 15;
             this.btn_add_movie.Text = "Add";
             this.btn_add_movie.UseVisualStyleBackColor = false;
@@ -607,9 +646,9 @@ namespace Video_rental_system
             // btn_delete_movie
             // 
             this.btn_delete_movie.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
-            this.btn_delete_movie.Location = new System.Drawing.Point(240, 101);
+            this.btn_delete_movie.Location = new System.Drawing.Point(240, 90);
             this.btn_delete_movie.Name = "btn_delete_movie";
-            this.btn_delete_movie.Size = new System.Drawing.Size(75, 23);
+            this.btn_delete_movie.Size = new System.Drawing.Size(75, 34);
             this.btn_delete_movie.TabIndex = 16;
             this.btn_delete_movie.Text = "Delete";
             this.btn_delete_movie.UseVisualStyleBackColor = false;
@@ -618,9 +657,9 @@ namespace Video_rental_system
             // btn_update_movie
             // 
             this.btn_update_movie.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
-            this.btn_update_movie.Location = new System.Drawing.Point(240, 146);
+            this.btn_update_movie.Location = new System.Drawing.Point(240, 135);
             this.btn_update_movie.Name = "btn_update_movie";
-            this.btn_update_movie.Size = new System.Drawing.Size(75, 23);
+            this.btn_update_movie.Size = new System.Drawing.Size(75, 34);
             this.btn_update_movie.TabIndex = 17;
             this.btn_update_movie.Text = "Update";
             this.btn_update_movie.UseVisualStyleBackColor = false;
@@ -630,6 +669,7 @@ namespace Video_rental_system
             // 
             this.label_rental_cost.AutoSize = true;
             this.label_rental_cost.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.label_rental_cost.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.label_rental_cost.Location = new System.Drawing.Point(10, 151);
             this.label_rental_cost.Name = "label_rental_cost";
             this.label_rental_cost.Size = new System.Drawing.Size(66, 15);
@@ -645,7 +685,7 @@ namespace Video_rental_system
             // 
             // movie_panel
             // 
-            this.movie_panel.BackColor = System.Drawing.Color.Lime;
+            this.movie_panel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.movie_panel.Controls.Add(this.text_rental_cost);
             this.movie_panel.Controls.Add(this.label_rental_cost);
             this.movie_panel.Controls.Add(this.btn_update_movie);
@@ -674,9 +714,9 @@ namespace Video_rental_system
             // 
             this.All_Rented.BackColor = System.Drawing.Color.Yellow;
             this.All_Rented.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.All_Rented.Location = new System.Drawing.Point(770, 311);
+            this.All_Rented.Location = new System.Drawing.Point(782, 345);
             this.All_Rented.Name = "All_Rented";
-            this.All_Rented.Size = new System.Drawing.Size(75, 23);
+            this.All_Rented.Size = new System.Drawing.Size(103, 40);
             this.All_Rented.TabIndex = 4;
             this.All_Rented.Text = "All Rented ";
             this.All_Rented.UseVisualStyleBackColor = false;
@@ -686,49 +726,19 @@ namespace Video_rental_system
             // 
             this.Rented_out.BackColor = System.Drawing.Color.Yellow;
             this.Rented_out.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Rented_out.Location = new System.Drawing.Point(764, 345);
+            this.Rented_out.Location = new System.Drawing.Point(782, 397);
             this.Rented_out.Name = "Rented_out";
-            this.Rented_out.Size = new System.Drawing.Size(93, 23);
+            this.Rented_out.Size = new System.Drawing.Size(103, 44);
             this.Rented_out.TabIndex = 5;
             this.Rented_out.Text = "Rented out";
             this.Rented_out.UseVisualStyleBackColor = false;
             this.Rented_out.Click += new System.EventHandler(this.Rented_out_Click);
             // 
-            // Popular_Customer
-            // 
-            this.Popular_Customer.AutoSize = true;
-            this.Popular_Customer.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.Popular_Customer.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.Popular_Customer.ForeColor = System.Drawing.Color.Maroon;
-            this.Popular_Customer.Location = new System.Drawing.Point(81, 12);
-            this.Popular_Customer.Name = "Popular_Customer";
-            this.Popular_Customer.Size = new System.Drawing.Size(108, 15);
-            this.Popular_Customer.TabIndex = 2;
-            this.Popular_Customer.Text = "Popular Customer";
-            // 
-            // Popular_Movies
-            // 
-            this.Popular_Movies.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.Popular_Movies.AutoSize = true;
-            this.Popular_Movies.BackColor = System.Drawing.Color.LightGray;
-            this.Popular_Movies.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.Popular_Movies.ForeColor = System.Drawing.Color.Maroon;
-            this.Popular_Movies.Location = new System.Drawing.Point(352, 11);
-            this.Popular_Movies.Margin = new System.Windows.Forms.Padding(5, 0, 3, 0);
-            this.Popular_Movies.Name = "Popular_Movies";
-            this.Popular_Movies.Size = new System.Drawing.Size(99, 15);
-            this.Popular_Movies.TabIndex = 3;
-            this.Popular_Movies.Text = "Popular_Movies";
-            this.Popular_Movies.UseMnemonic = false;
-            // 
             // Videorental
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.Black;
-            this.BackgroundImage = global::Video_rental_system.Properties.Resources.Abccccc;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
             this.ClientSize = new System.Drawing.Size(910, 489);
             this.Controls.Add(this.Rented_out);
             this.Controls.Add(this.All_Rented);
